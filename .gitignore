@@ -1,0 +1,126 @@
+### ENVIRONMENT & CONFIG ###
+.env
+.env.local
+.env.*.local
+.env.*
+!.env.example
+.env.backup
+
+### IDE & EDITOR ###
+.vscode/
+.idea/
+.phpstorm.meta.php
+.webassets-cache
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.fleet
+.nova
+.zed
+.phpactor.json
+
+### PHP ###
+*.phar
+.phpunit.result.cache
+/.phpunit.cache
+.phpactor.json
+auth.json
+/.auth.json
+
+### NODEJS ###
+/node_modules
+/npm-debug.log
+/yarn-error.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+### BUILD & GENERATED ###
+/public/build
+/public/hot
+/vendor
+/coverage
+/build
+/dist
+
+### STORAGE & LOGS ###
+/bootstrap/cache/*
+!bootstrap/cache/.gitkeep
+
+/storage/*.key
+/storage/app/*
+!storage/app/.gitkeep
+/storage/app/public
+/storage/framework/cache/*
+!storage/framework/cache/.gitkeep
+/storage/framework/sessions/*
+!storage/framework/sessions/.gitkeep
+/storage/framework/views/*
+!storage/framework/views/.gitkeep
+/storage/logs/*
+!storage/logs/.gitkeep
+/storage/debugbar/
+/storage/pail
+
+### UPLOADS & TEMP ###
+/public/storage
+/public/uploads
+/public/temp
+/storage/temp
+
+### DATABASE ###
+/database/*.sqlite
+/database/*.sqlite-journal
+/database/*.sql
+*.sql
+*.sqlite
+*.sqlite3
+database.dump
+
+### BACKUPS & LOGS ###
+*.log
+*.bak
+*.backup
+*.tmp
+*.orig
+.cache
+
+### COMPOSER ###
+composer.lock
+composer.json.lock
+
+### VERCEL ###
+.vercel
+
+### OS SPECIFIC ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+
+### VAGRANT ###
+Homestead.json
+Homestead.yaml
+
+### MISC ###
+.env.*.local
+.~*
+*.pid
+/coverage
+.phpunit.cache
+/.vercel
+
+### LARAVEL ###
+/laravel-echo-server.log
+
+# Optional
+.env.testing
