@@ -1,0 +1,79 @@
+/*
+|--------------------------------------------------------------------------
+| WMS Custom Theme
+|--------------------------------------------------------------------------
+*/
+
+
+/* Background semua halaman */
+
+.content-wrapper {
+
+    background:
+    linear-gradient(
+        135deg,
+        #f5f5f5,
+        #2228ed
+    );
+
+}
+
+
+
+/* Card WMS */
+
+.card {
+
+    border-radius: 12px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.08);
+
+}
+
+
+
+/* Judul halaman */
+
+.content-header h1 {
+
+    color:#003b73;
+
+    font-weight:700;
+
+}
+
+
+
+/* Table */
+
+.table {
+
+    background:white;
+
+}
+
+
+
+/* Sidebar */
+
+.main-sidebar {
+
+    background:
+    linear-gradient(
+        180deg,
+        #000305,
+        #03519b
+    ) !important;
+
+}
+
+
+
+/* Navbar */
+
+.main-header {
+
+    background:#dedcdcd8;
+
+}

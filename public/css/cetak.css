@@ -1,0 +1,60 @@
+
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .header p {
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 7px;
+        }
+
+        th {
+            text-align: center;
+            background: #eee;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: right;
+        }
+
+        @media print {
+
+            .no-print {
+                display: none;
+            }
+
+            @page {
+                size: landscape;
+                margin: 15mm;
+            }
+
+        }
+
+
