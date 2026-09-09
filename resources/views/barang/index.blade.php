@@ -69,7 +69,7 @@
         class="checkBarang">
 
 </td>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $barangs->firstItem() ? $barangs->firstItem() + $loop->index : $loop->iteration }}</td>
                         <td>{{ $barang->kode_barang }}</td>
                         <td>{{ $barang->nama_barang }}</td>
                         <td>{{ $barang->unit }}</td>
@@ -98,6 +98,9 @@ Barcode
             </tbody>
         </table>
 </form>
+        <div class="mt-3 d-flex justify-content-end">
+            {{ $barangs->appends(request()->query())->links() }}
+        </div>
     </div>
 
 </div>

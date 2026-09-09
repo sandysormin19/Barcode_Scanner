@@ -8,7 +8,7 @@
 <div class="mb-3 no-print">
 
     <button
-        onclick="window.print()"
+        onclick="window.print()" bisa 
         class="btn btn-success">
 
         <i class="fas fa-print"></i>

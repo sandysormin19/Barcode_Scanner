@@ -21,7 +21,7 @@ class BarangService
     public function importFromExcel($file): void
     {
         // delegate to Maatwebsite's queued import
-        Excel::queueImport(new BarangImport, $file);
+        Excel::import(new BarangImport, $file);
     }
 
     public function findByKodeBarang(string $kode): ?Barang

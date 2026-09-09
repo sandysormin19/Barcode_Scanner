@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\BarangKeluar;
+use App\Observers\BarangKeluarObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
@@ -24,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
 {
             Paginator::useBootstrapFive();
+
+        BarangKeluar::observe(BarangKeluarObserver::class);
 
     if (request()->header('x-forwarded-proto') === 'https') {
         URL::forceScheme('https');

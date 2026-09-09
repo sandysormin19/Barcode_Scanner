@@ -15,15 +15,17 @@ class BarangMasukStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nomor_transaksi' => 'required|string|max:255',
-            'barang_id' => 'required|array|min:1',
-            'barang_id.*' => 'integer|exists:barangs,id',
-            'qty' => 'required|array',
-            'qty.*' => 'integer|min:1',
-            'tanggal_masuk' => 'required|date',
-            'serial_number' => 'sometimes|array',
-            'serial_qty' => 'sometimes|array',
-        ];
+        'nomor_transaksi' => 'required|string|max:255',
+        'operator' => 'sometimes|string|max:255',
+        'barang_id' => 'required|array|min:1',
+        'barang_id.*' => 'integer|exists:barangs,id',
+        'qty' => 'required|array',
+        'qty.*' => 'integer|min:1',
+        'tanggal_masuk' => 'required|date',
+        'keterangan' => 'sometimes|string|max:1000',
+        'serial_number' => 'sometimes|array',
+        'serial_qty' => 'sometimes|array',
+    ];
     }
 
     public function messages(): array

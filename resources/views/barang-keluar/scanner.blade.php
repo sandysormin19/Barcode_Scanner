@@ -49,6 +49,33 @@
 
             <div class="col-12 col-md-4">
                 <div class="form-group">
+                    <label>Kurir Internal</label>
+                    <input type="text" class="form-control" name="courier" value="{{ old('courier') }}" placeholder="Nama kurir / tim pengiriman internal">
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="form-group">
+                    <label>Tujuan Pengiriman</label>
+                    <input type="text" class="form-control" name="destination" value="{{ old('destination') }}" placeholder="Lokasi / tujuan pengiriman">
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4 mt-3">
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control" name="status" required>
+                        <option value="pending" selected>Pending</option>
+                        <option value="packed">Packed</option>
+                        <option value="in_transit">In Transit</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4 mt-3">
+                <div class="form-group">
                     <label>Tanggal</label>
                     <input type="date"
                         class="form-control"

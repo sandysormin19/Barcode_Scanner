@@ -14,7 +14,9 @@ class BarangMasukController extends Controller
 {
     public function  __construct(
         protected BarangMasukService $barangMasukService
-){}
+){
+
+}
 
 public function index(Request $request): View
 {
@@ -49,5 +51,4 @@ public function show(BarangMasuk $barangMasuk): View
 
         return view('barang-masuk.show', compact('barangMasuk'));
     }
-
 }
