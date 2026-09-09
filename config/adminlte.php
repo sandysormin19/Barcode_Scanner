@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Title
@@ -340,6 +339,12 @@ return [
         'text'  => 'Barang Keluar',
         'route' => 'barang-keluar.index',
         'icon'  => 'fas fa-arrow-up',
+    ],
+
+    [
+        'text'  => 'Cek Status Pengiriman',
+        'route' => 'barang-keluar.cek-status',
+        'icon'  => 'fas fa-search-location',
     ],
 
     ['header' => 'PERSEDIAAN'],

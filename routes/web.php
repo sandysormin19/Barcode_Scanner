@@ -12,159 +12,69 @@ use App\Http\Controllers\StokBarangController;
 use App\Http\Controllers\StokMutasiController;
 use App\Http\Controllers\LaporanController;
 
-//Landing-------------------------------------
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::redirect('/', '/login');
 
 
-//Authentication----------------------------
-Route::middleware(['auth'])->group(function () {
+Route::middleware('auth')->group(function () {
 
-Route::get(
-    '/laporan/barang-masuk/cetak',
-    [LaporanController::class, 'cetakBarangMasuk']
-)->name('laporan.barang-masuk.cetak');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get(
-    '/laporan/barang-masuk-hari-ini',
-    [LaporanController::class,'barangMasukHariIni']
-)->name('laporan.barang-masuk-hari-ini');
+    Route::prefix('laporan')->name('laporan.')->controller(LaporanController::class)->group(function () {
+        Route::get('/barang-masuk/cetak', 'cetakBarangMasuk')->name('barang-masuk.cetak');
+        Route::get('/barang-masuk-hari-ini', 'barangMasukHariIni')->name('barang-masuk-hari-ini');
+        Route::get('/barang-keluar/hari-ini', 'barangKeluarHariIni')->name('barang-keluar.hari-ini');
+        Route::get('/barang-keluar/cetak', 'cetakBarangKeluar')->name('barang-keluar.cetak');
+    });
 
-Route::get(
-    '/laporan/barang-keluar/hari-ini',
-    [LaporanController::class,'barangKeluarHariIni']
-)->name('laporan.barang-keluar.hari-ini');
+    Route::prefix('profile')->name('profile.')->controller(ProfileController::class)->group(function () {
+        Route::get('/', 'edit')->name('edit');
+        Route::patch('/', 'update')->name('update');
+        Route::delete('/', 'destroy')->name('destroy');
+    });
 
-Route::get('/laporan/barang-keluar/cetak',
-    [LaporanController::class, 'cetakBarangKeluar'])
-    ->name('laporan.barang-keluar.cetak');
-
-//Dashboard--------------------
-  Route::get('/dashboard',
-    [DashboardController::class,'index']
-)->name('dashboard');
+    Route::prefix('barang')->name('barang.')->controller(BarangController::class)->group(function () {
+        Route::get('/cari', 'cari')->name('cari');
+        Route::post('/import', 'import')->name('import');
+        Route::post('/barcode/cetak', 'cetakBarcode')->name('cetak-barcode');
+        Route::get('/{barang}/barcode', 'barcode')->name('barcode');
+    });
 
 
-//Profile--------------------------------
-    Route::get('/profile',
-        [ProfileController::class,'edit']
-    )->name('profile.edit');
+    Route::resource('barang', BarangController::class)
+        ->only(['index', 'show']);
 
 
-    Route::patch('/profile',
-        [ProfileController::class,'update']
-    )->name('profile.update');
+    Route::resource('kategori', KategoriController::class)
+        ->only(['index', 'store', 'show', 'edit', 'update', 'destroy']);
 
+    Route::prefix('barang-masuk')->name('barang-masuk.')->controller(BarangMasukController::class)->group(function () {
+        Route::get('/scanner', 'scanner')->name('scanner');
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{barang_masuk}', 'show')->name('show');
+        Route::get('/{barang_masuk}/edit', 'edit')->name('edit');
+        Route::put('/{barang_masuk}', 'update')->name('update');
+        Route::delete('/{barang_masuk}', 'destroy')->name('destroy');
+    });
 
-    Route::delete('/profile',
-        [ProfileController::class,'destroy']
-    )->name('profile.destroy');
+    Route::prefix('barang-keluar')->name('barang-keluar.')->controller(BarangKeluarController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/scanner', 'scanner')->name('scanner');
+        Route::get('/cek-status', 'cekStatus')->name('cek-status');
+        Route::post('/', 'store')->name('store');
+        Route::get('/cari', 'cari')->name('cari');
+        Route::get('/{barang_keluar}', 'show')->name('show');
+        Route::get('/{barang_keluar}/track', 'track')->name('track');
+        Route::post('/{barang_keluar}/update-status', 'updateStatus')->name('update-status');
+        Route::get('/{barang_keluar}/edit', 'edit')->name('edit');
+        Route::put('/{barang_keluar}', 'update')->name('update');
+        Route::delete('/{barang_keluar}', 'destroy')->name('destroy');
+    });
 
-
-//Master Barang-------------------------
-
-Route::get(
-    '/barang/cari',
-    [BarangController::class,'cari']
-)->name('barang.cari');
-
-
-Route::resource(
-    'barang',
-    BarangController::class
-);
-
-
-Route::post(
-    '/barang/import',
-    [BarangController::class,'import']
-)->name('barang.import');
-
-
-Route::post(
-    '/barang/barcode/cetak',
-    [BarangController::class,'cetakBarcode']
-)->name('barang.cetak-barcode');
-
-
-Route::get(
-    '/barang/{barang}/barcode',
-    [BarangController::class,'barcode']
-)->name('barang.barcode');
-
-
-//Kategori------------------------------------------
-    Route::resource(
-        'kategori',
-        KategoriController::class
-    );
-
-
-//Barang Masuk---------------
-
-Route::get(
-        '/barang-masuk/scanner',
-        [BarangMasukController::class,'scanner']
-    )->name('barang-masuk.scanner');
-
-    Route::resource(
-        'barang-masuk',
-        BarangMasukController::class
-    );
-
-//Barang Keluar---------------------------------------
-
-    Route::prefix('barang-keluar')
-        ->name('barang-keluar.')
-        ->group(function () {
-
-            //Riwayat Barang Keluar
-            Route::get('/',
-                [BarangKeluarController::class,'index']
-            )->name('index');
-
-            //Simpan Transaksi
-            Route::post('/store',
-                [BarangKeluarController::class,'store']
-            )->name('store');
-
-            //Scanner Barang Keluar
-            Route::get('/scanner',
-                [BarangKeluarController::class,'scanner']
-            )->name('scanner');
-
-            //Cari Barang
-            Route::get('/cari',
-                [BarangKeluarController::class,'cari']
-            )->name('cari');
-
-            //Detail Transaksi
-            Route::get('/{barang_keluar}',
-                [BarangKeluarController::class, 'show']
-                )->name('show');
-        });
-
-
-//Stok---------------------------------
-    Route::get(
-        '/stok',
-        [StokBarangController::class,'index']
-    )->name('stok.index');
-
-
-    Route::get(
-        '/stok-mutasi',
-        [StokMutasiController::class,'index']
-    )->name('stok-mutasi.index');
-
+    Route::get('/stok', [StokBarangController::class, 'index'])->name('stok.index');
+    Route::get('/stok-mutasi', [StokMutasiController::class, 'index'])->name('stok-mutasi.index');
 
 });
 
-Route::get('/tes-route', function () {
-    dd('INI PROJECT WMS YANG KU EDIT');
-});
-
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -63,7 +63,11 @@ class BarangKeluarService
             $header = BarangKeluar::create([
                 'nomor_transaksi' => $data['nomor_transaksi'],
                 'tanggal' => $data['tanggal_keluar'],
+                'status' => $data['status'] ?? 'pending',
+                'courier' => $data['courier'] ?? null,
+                'destination' => $data['destination'] ?? null,
                 'keterangan' => $data['keterangan'] ?? null,
+                'status_updated_at' => now(),
             ]);
 
             foreach ($data['barang_id'] as $index => $barangId) {

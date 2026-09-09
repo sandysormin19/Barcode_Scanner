@@ -16,6 +16,9 @@ class BarangKeluarStoreRequest extends FormRequest
     {
         return [
             'nomor_transaksi' => 'required|string|max:255',
+            'status' => 'nullable|string|in:pending,packed,in_transit,delivered,cancelled',
+            'courier' => 'nullable|string|max:255',
+            'destination' => 'nullable|string|max:255',
             'tanggal_keluar' => 'required|date',
             'barang_id' => 'required|array|min:1',
             'barang_id.*' => 'integer|exists:barangs,id',
@@ -30,6 +33,7 @@ class BarangKeluarStoreRequest extends FormRequest
     {
         return [
             'nomor_transaksi.required' => 'Nomor transaksi wajib diisi.',
+            'status.in' => 'Status tidak valid.',
             'barang_id.required' => 'Pilih minimal satu barang.',
             'qty.*.min' => 'Qty minimal 1.',
         ];

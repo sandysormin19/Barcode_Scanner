@@ -20,6 +20,14 @@
 
     </a>
 
+    <a
+        href="{{ route('barang-keluar.track', $barangKeluar) }}"
+        class="btn btn-success ml-2"
+    >
+        <i class="fas fa-map-marked-alt mr-1"></i>
+        Tracking
+    </a>
+
 </div>
 
 @stop
@@ -62,6 +70,55 @@
 
 
             <div class="col-md-6">
+
+                <label>
+                    Status
+                </label>
+
+                <div class="form-control bg-light">
+                    @if($barangKeluar->status)
+                        <span class="badge badge-{{ $barangKeluar->status->badgeColor() }}">
+                            {{ $barangKeluar->status->label() }}
+                        </span>
+                    @else
+                        -
+                    @endif
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 mt-3">
+
+                <label>
+                    Kurir Internal
+                </label>
+
+                <div class="form-control bg-light">
+
+                    {{ $barangKeluar->courier ?? '-' }}
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 mt-3">
+
+                <label>
+                    Tujuan
+                </label>
+
+                <div class="form-control bg-light">
+
+                    {{ $barangKeluar->destination ?? '-' }}
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 mt-3">
 
                 <label>
                     Tanggal

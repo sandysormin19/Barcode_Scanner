@@ -1,0 +1,175 @@
+.tracker-shell {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.tracker-summary {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+}
+
+.tracker-summary__header {
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+    color: #fff;
+    padding: 1rem 1.25rem;
+}
+
+.tracker-summary__body {
+    padding: 1.5rem;
+}
+
+.tracker-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.tracker-status-pill--pending {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+.tracker-status-pill--packed {
+    background-color: #cff4fc;
+    color: #055160;
+}
+.tracker-status-pill--in_transit {
+    background-color: #dfe7ff;
+    color: #1d4ed8;
+}
+.tracker-status-pill--delivered {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+.tracker-status-pill--cancelled {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.tracker-timeline {
+    position: relative;
+    margin-top: 1.5rem;
+    padding-left: 0.25rem;
+}
+
+.tracker-timeline::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e2e8f0;
+}
+
+.tracker-item {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    padding-left: 3rem;
+    padding-bottom: 1.5rem;
+}
+
+.tracker-item:last-child {
+    padding-bottom: 0;
+}
+
+.tracker-item__dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+}
+
+.tracker-item__dot--pending {
+    background-color: #f4b400;
+}
+.tracker-item__dot--packed {
+    background-color: #0ea5e9;
+}
+.tracker-item__dot--in_transit {
+    background-color: #2563eb;
+}
+.tracker-item__dot--delivered {
+    background-color: #22c55e;
+}
+.tracker-item__dot--cancelled {
+    background-color: #ef4444;
+}
+
+.tracker-item__content {
+    flex: 1;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #0f172a;
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+}
+
+.tracker-item__title {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.tracker-item__meta {
+    color: #64748b;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+}
+
+.tracker-item__text {
+    margin-top: 0.75rem;
+    color: #334155;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.tracker-empty {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 1.4rem;
+    text-align: center;
+    color: #475569;
+}
+
+.tracker-form {
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    padding: 1.25rem;
+}
+
+.tracker-form__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+@media (max-width: 767.98px) {
+    .tracker-item {
+        padding-left: 2.25rem;
+    }
+
+    .tracker-item__dot {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+}

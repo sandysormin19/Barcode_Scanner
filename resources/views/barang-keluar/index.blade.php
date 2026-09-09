@@ -58,12 +58,17 @@
                         {{$barangKeluar->tanggal}}
                             </td>
                             <td>
-                                {{--Nanti Menuju Detail--}}
-                            <a href="{{route ('barang-keluar.show', $barangKeluar)}}"
-                            class="btn btn-info btn-sm">
-                            <i class="fas fa-eye"></i>
-                                Detail
-                            </a>
+                                <div class="d-flex gap-1">
+                                    <a href="{{ route('barang-keluar.show', $barangKeluar) }}" class="btn btn-info btn-sm">
+                                        <i class="fas fa-eye"></i>
+                                        Detail
+                                    </a>
+
+                                    <a href="{{ route('barang-keluar.track', $barangKeluar) }}" class="btn btn-success btn-sm">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                        Tracking
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     @empty
