@@ -123,4 +123,15 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Eshope Integration
+    |--------------------------------------------------------------------------
+    |
+    | Konfigurasi untuk integrasi dengan platform Eshope
+    |
+    */
+
+    'eshope_webhook_url' => env('ESHOPE_WEBHOOK_URL', 'http://eshope.local/api/webhook/delivered'),
+
 ];

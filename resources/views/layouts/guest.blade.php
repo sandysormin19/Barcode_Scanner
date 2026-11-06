@@ -1,54 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
 
 <meta charset="UTF-8">
 
-<title>
-    WMS Produksi - Login
-</title>
+<title>WMS Produksi</title>
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/jpeg" href="{{ asset('vendor/adminlte/dist/img/logo.jpeg') }}">
 
 
-<link rel="stylesheet"
-href="{{ asset('vendor/adminlte/plugins/fontawesome-free/css/all.min.css') }}">
-
-
-<link rel="stylesheet"
-href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/wms.css') }}">
 
 
 </head>
 
 
-<body class="hold-transition login-page"
-style="
-background:
-linear-gradient(
-135deg,
-rgba(0,123,255,.85),
-rgba(0,40,100,.9)
-),
-url('/images/gudang.jpg');
-
-background-size:cover;
-background-position:center;
-">
+<body class="auth-page">
 
 {{ $slot }}
 
-
-
-<script src="{{ asset('vendor/adminlte/plugins/jquery/jquery.min.js') }}"></script>
-
-
-<script src="{{ asset('vendor/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-
-<script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
 
 
 </body>

@@ -1,13 +1,11 @@
-
 const ApiHelper = {
-    /**
-     * Cari barang berdasarkan kode
-     */
-    searchBarang(kode, config) {
+    searchBarang(barcodeValue, config) {
         return $.ajax({
             url: config.cariUrl,
             type: "GET",
-            data: { kode_barang: kode },
+            data: {
+                kode_barang: barcodeValue,
+            },
             dataType: "json",
         });
     },

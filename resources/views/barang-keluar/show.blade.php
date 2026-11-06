@@ -169,7 +169,7 @@
 
                 <div class="form-control bg-light">
 
-                    {{ $detail->barang->kode_barang ?? '-' }}
+                    {{ $detail->barang?->kode_tampilan ?? '-' }}
 
                 </div>
 
@@ -184,7 +184,7 @@
 
                 <div class="form-control bg-light">
 
-                    {{ $detail->barang->nama_barang ?? '-' }}
+                    {{ $detail->barang?->nama_barang ?? '-' }}
 
                 </div>
 

@@ -9,32 +9,28 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-
 class BarangMasukController extends Controller
 {
-    public function  __construct(
+    public function __construct(
         protected BarangMasukService $barangMasukService
-){
+    ) {}
 
-}
+    public function index(Request $request): View
+    {
+        $perPage = (int) $request->query('per_page', 10);
+        $barangMasuks = $this->barangMasukService->getPaginatedMasuk($perPage);
 
-public function index(Request $request): View
-{
-    $perPage = (int) $request->query('per_page', 10);
+        return view('barang-masuk.index', compact('barangMasuks'));
+    }
 
-    $barangMasuks = $this-> barangMasukService->getPaginatedMasuk($perPage);
+    public function scanner(): View
+    {
+        $nomor = $this->barangMasukService->generateNomor();
 
-    return view('barang-masuk.index', compact('barangMasuks'));
-}
+        return view('barang-masuk.scanner', compact('nomor'));
+    }
 
-public function scanner():View
-{
-    $nomor = $this->barangMasukService->generateNomor();
-
-    return view('barang-masuk.scanner', compact('nomor'));
-
-}
-public function store(BarangMasukStoreRequest $request): RedirectResponse
+    public function store(BarangMasukStoreRequest $request): RedirectResponse
     {
         $header = $this->barangMasukService->createMasuk($request->validated());
 
@@ -42,7 +38,7 @@ public function store(BarangMasukStoreRequest $request): RedirectResponse
             ->with('success', 'Transaksi barang masuk berhasil disimpan.');
     }
 
-public function show(BarangMasuk $barangMasuk): View
+    public function show(BarangMasuk $barangMasuk): View
     {
         $barangMasuk->load([
             'details.barang',

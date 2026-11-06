@@ -135,7 +135,6 @@
             <thead class="bg-primary text-white">
                 <tr>
                     <th width="5%">No</th>
-                    <th width="15%">Kode</th>
                     <th>Nama Barang</th>
                     <th width="10%">Stok</th>
                     <th width="10%">Qty</th>
@@ -147,7 +146,7 @@
 
             <tbody id="detailBarang">
                 <tr>
-                    <td colspan="8" class="text-center text-muted py-4">
+                    <td colspan="7" class="text-center text-muted py-4">
                         <i class="fas fa-box-open fa-2x mb-2"></i>
                         <br>
                         Belum ada barang yang dipilih.
@@ -185,12 +184,11 @@ window.barangKeluarConfig = {
 </script>
 
 <!-- Helpers dulu -->
-<script src="{{ asset('js/helper.js') }}"></script>
 <script src="{{ asset('js/modules/api-helper.js') }}"></script>
 <script src="{{ asset('js/modules/table-helper.js') }}"></script>
-<script src="{{ asset('js/modules/serial-helper.js') }}"></script>
+<script src="{{ asset('js/modules/serial-helper.js') }}?v={{ filemtime(public_path('js/modules/serial-helper.js')) }}"></script>
 <script src="{{ asset('js/modules/scanner-helper.js') }}"></script>
 
 <!-- Main script untuk keluar (bukan masuk) -->
-<script src="{{ asset('js/barang-keluar-scanner.js') }}"></script>
+<script src="{{ asset('js/barang-keluar-scanner.js') }}?v={{ filemtime(public_path('js/barang-keluar-scanner.js')) }}"></script>
 @stop

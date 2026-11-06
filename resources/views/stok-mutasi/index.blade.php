@@ -61,7 +61,7 @@
                             </td>
 
                             <td>
-                                {{ $item->barang->kode_barang }}
+                                {{ $item->barang?->kode_tampilan ?? '-' }}
                             </td>
 
                             <td>

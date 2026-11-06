@@ -1,79 +1,49 @@
-/*
-|--------------------------------------------------------------------------
-| WMS Custom Theme
-|--------------------------------------------------------------------------
-*/
+* { box-sizing: border-box; }
 
-
-/* Background semua halaman */
-
-.content-wrapper {
-
-    background:
-    linear-gradient(
-        135deg,
-        #f5f5f5,
-        #2228ed
-    );
-
+body.auth-page {
+    display: grid;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    place-items: center;
+    color: #17212b;
+    background: #f3f6f8;
+    font: 16px/1.5 Arial, sans-serif;
 }
 
-
-
-/* Card WMS */
-
-.card {
-
-    border-radius: 12px;
-
-    box-shadow:
-    0 4px 15px rgba(0,0,0,.08);
-
+.auth-panel {
+    width: min(100%, 380px);
+    padding: 28px;
+    border: 1px solid #dce3e8;
+    border-radius: 8px;
+    background: #fff;
 }
 
-
-
-/* Judul halaman */
-
-.content-header h1 {
-
-    color:#003b73;
-
-    font-weight:700;
-
+.auth-panel h1 { margin: 0; font-size: 1.5rem; }
+.muted, .auth-footer { color: #596873; }
+.muted { margin: 6px 0 24px; }
+.auth-panel form { display: grid; gap: 8px; }
+.auth-panel input:not([type="checkbox"]) {
+    width: 100%;
+    min-height: 42px;
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    border: 1px solid #aebbc5;
+    border-radius: 4px;
+    font: inherit;
 }
-
-
-
-/* Table */
-
-.table {
-
-    background:white;
-
+.auth-panel input:focus { outline: 2px solid #2563eb; outline-offset: 1px; }
+.check-row { display: flex; align-items: center; gap: 8px; margin: 4px 0 12px; }
+.auth-panel button {
+    min-height: 42px;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    background: #1758a6;
+    font: inherit;
+    cursor: pointer;
 }
-
-
-
-/* Sidebar */
-
-.main-sidebar {
-
-    background:
-    linear-gradient(
-        180deg,
-        #000305,
-        #03519b
-    ) !important;
-
-}
-
-
-
-/* Navbar */
-
-.main-header {
-
-    background:#dedcdcd8;
-
-}
+.auth-panel button:hover { background: #124985; }
+.auth-footer { margin: 20px 0 0; text-align: center; }
+.field-error { margin: -6px 0 4px; color: #b42318; font-size: .9rem; }
+.notice { padding: 10px; border: 1px solid #a7d7b4; border-radius: 4px; background: #effaf2; }

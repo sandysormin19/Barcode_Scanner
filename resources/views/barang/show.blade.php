@@ -12,7 +12,7 @@
 
     <div class="card-header">
 
-        <h4>{{ $barang->kode_barang }}</h4>
+        <h4>{{ $barang->kode_tampilan }} — {{ $barang->item_barang }}</h4>
 
     </div>
 
@@ -22,7 +22,12 @@
 
             <tr>
                 <th width="250">Kode Barang</th>
-                <td>{{ $barang->kode_barang }}</td>
+                <td>{{ $barang->kode_tampilan }}</td>
+            </tr>
+
+            <tr>
+                <th>Item Barang</th>
+                <td>{{ $barang->item_barang }}</td>
             </tr>
 
             <tr>

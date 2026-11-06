@@ -1,12 +1,7 @@
-/**
- * Table Helper - Mengelola operasi tabel (create, update, delete rows)
- */
+
 const TableHelper = {
     barangIndex: 0,
 
-    /**
-     * Buat baris barang baru untuk masuk
-     */
     createRowMasuk(
         barang,
         nomorTransaksi,
@@ -15,50 +10,45 @@ const TableHelper = {
         this.clearEmptyMessage(containerSelector);
 
         const index = this.barangIndex++;
-        const nomor = $(containerSelector + " tr").length + 1;
+        const nomor = $(containerSelector + " tr[data-barang-index]").length + 1;
+        const serialFields = barang.pakai_no_seri
+            ? `
+                <div class="serial-container">
+                    <div class="serial-row mb-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control serialNumber"
+                                   name="serial_number[${index}][]" placeholder="Nomor Seri">
+                            <input type="number" class="form-control serialQty"
+                                   name="serial_qty[${index}][]" value="1" min="1" placeholder="Qty">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-danger btnHapusSerial">Hapus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-sm btn-primary btnTambahSerial">Tambah Serial</button>
+                <div class="mt-2"><small>Total Serial: <strong class="totalSerial text-danger">1</strong> / <strong class="totalBarang">1</strong></small></div>
+            `
+            : '<span class="text-muted">Tidak menggunakan serial</span>';
 
         const html = `
             <tr data-barang-index="${index}">
-                <td class="nomor-baris">${nomor}</td>
-                <td>
-                    ${barang.kode_barang}
-                    <input type="hidden" name="barang_id[]" value="${barang.id}">
+               <td class="nomor-baris">
+                 ${nomor}
+                <input type="hidden" name="barang_id[${index}]" value="${barang.id}">
                 </td>
                 <td>${barang.nama_barang}</td>
                 <td>${barang.unit ?? "-"}</td>
                 <td>
                     <input type="number" class="form-control qtyMasuk"
-                           name="qty[]" value="1" min="1">
+                           name="qty[${index}]" value="1" min="1">
                 </td>
                 <td>
                     <input type="text" class="form-control"
                            value="${nomorTransaksi}" readonly>
                 </td>
                 <td>
-                    <div class="serial-container">
-                        <div class="serial-row mb-2">
-                            <div class="input-group">
-                                <input type="text" class="form-control serialNumber"
-                                       name="serial_number[${index}][]"
-                                       placeholder="Nomor Seri">
-                                <input type="number" class="form-control serialQty"
-                                       name="serial_qty[${index}][]" value="1" min="1"
-                                       placeholder="Qty">
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-danger btnHapusSerial">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-primary btnTambahSerial">
-                        <i class="fas fa-plus mr-1"></i> Tambah Serial
-                    </button>
-                    <div class="mt-2">
-                        <small>Total Serial: <strong class="totalSerial text-danger">1</strong> /
-                               <strong class="totalBarang">1</strong></small>
-                    </div>
+                    ${serialFields}
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger btn-sm btnHapus">
@@ -72,9 +62,6 @@ const TableHelper = {
         return $(`tr[data-barang-index="${index}"]`);
     },
 
-    /**
-     * Buat baris barang baru untuk keluar
-     */
     createRowKeluar(
         barang,
         nomorTransaksi,
@@ -83,32 +70,33 @@ const TableHelper = {
         this.clearEmptyMessage(containerSelector);
 
         const index = this.barangIndex++;
-        const nomor = $(containerSelector + " tr").length + 1;
+        const nomor = $(containerSelector + " tr[data-barang-index]").length + 1;
+        const serialFields = barang.pakai_no_seri
+            ? `
+                <div class="serial-container"></div>
+                <div class="mt-2"><small>Total Serial: <strong class="totalSerial text-danger">0</strong> / <strong class="totalBarang">0</strong></small></div>
+            `
+            : '<span class="text-muted">Tidak menggunakan serial</span>';
 
         const html = `
             <tr data-barang-index="${index}">
-                <td class="nomor-baris">${nomor}</td>
-                <td>
-                    ${barang.kode_barang}
-                    <input type="hidden" name="barang_id[]" value="${barang.id}">
+               <td class="nomor-baris">
+                ${nomor}
+                <input type="hidden" name="barang_id[${index}]" value="${barang.id}">
                 </td>
                 <td>${barang.nama_barang}</td>
                 <td>${barang.stok}</td>
                 <td>
                     <input type="number" class="form-control qtyKeluar"
-                           name="qty[]" value="0" min="1"
-                           max="${barang.stok}" readonly>
+                           name="qty[${index}]" value="${barang.pakai_no_seri ? 0 : 1}" min="1"
+                           max="${barang.stok}" ${barang.pakai_no_seri ? 'readonly' : ''}>
                 </td>
                 <td>
                     <input type="text" class="form-control"
                            value="${nomorTransaksi}" readonly>
                 </td>
                 <td>
-                    <div class="serial-container"></div>
-                    <div class="mt-2">
-                        <small>Total Serial: <strong class="totalSerial text-danger">0</strong> /
-                               <strong class="totalBarang">0</strong></small>
-                    </div>
+                    ${serialFields}
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger btn-sm btnHapus">
@@ -122,19 +110,17 @@ const TableHelper = {
         return $(`tr[data-barang-index="${index}"]`);
     },
 
-    /**
-     * Buat baris barang standar (tanpa serial)
-     */
+
     createRowSimple(barang, containerSelector = "#detailBarang") {
         this.clearEmptyMessage(containerSelector);
 
-        const nomor = $(containerSelector + " tr").length + 1;
+        const nomor = $(containerSelector + " tr[data-barang-index]").length + 1;
 
         const html = `
             <tr>
                 <td>${nomor}</td>
                 <td>
-                    ${barang.kode_barang}
+                    ${barang.kode_tampilan ?? String(barang.kode_barang ?? "").replace(/-[a-f0-9]{16}$/i, "")}
                     <input type="hidden" name="barang_id[]" value="${barang.id}">
                 </td>
                 <td>${barang.nama_barang}</td>
@@ -157,16 +143,12 @@ const TableHelper = {
         $(containerSelector).append(html);
     },
 
-    /**
-     * Hapus baris barang
-     */
+
     deleteRow($row) {
         $row.remove();
     },
 
-    /**
-     * Perbarui nomor urut baris
-     */
+
     updateRowNumbers(containerSelector = "#detailBarang") {
         $(containerSelector + " tr").each((index, element) => {
             $(element)
@@ -175,18 +157,14 @@ const TableHelper = {
         });
     },
 
-    /**
-     * Hapus pesan kosong di tabel
-     */
+
     clearEmptyMessage(containerSelector = "#detailBarang") {
         if ($(containerSelector + " tr td").length === 1) {
             $(containerSelector).html("");
         }
     },
 
-    /**
-     * Tampilkan pesan tabel kosong
-     */
+
     showEmptyMessage(
         message = "Belum ada barang yang dipilih.",
         containerSelector = "#detailBarang",
@@ -201,9 +179,7 @@ const TableHelper = {
         $(containerSelector).html(html);
     },
 
-    /**
-     * Cek apakah barang sudah ada
-     */
+
     barangExists(barangId) {
         let exists = false;
         $('input[name="barang_id[]"]').each(function () {
@@ -215,17 +191,17 @@ const TableHelper = {
         return exists;
     },
 
-    /**
-     * Dapatkan row berdasarkan ID barang
-     */
-    getRowByBarangId(barangId) {
-        let result = null;
-        $('input[name="barang_id[]"]').each(function () {
-            if ($(this).val() == barangId) {
-                result = $(this).closest("tr");
-                return false;
-            }
-        });
-        return result;
-    },
+
+getRowByBarangId(barangId) {
+    let $result = $();
+
+    $('#detailBarang input[name^="barang_id["]').each(function () {
+        if (String($(this).val()) === String(barangId)) {
+            $result = $(this).closest("tr");
+            return false;
+        }
+    });
+
+    return $result;
+},
 };

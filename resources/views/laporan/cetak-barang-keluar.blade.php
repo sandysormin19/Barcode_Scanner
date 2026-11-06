@@ -44,7 +44,7 @@
                         {{ $row->barangKeluar ? \Carbon\Carbon::parse($row->barangKeluar->tanggal)->format('d-m-Y') : '-' }}
                     </td>
                     <td>{{ $row->barangKeluar?->nomor_transaksi ?? '-' }}</td>
-                    <td>{{ $row->barang?->kode_barang ?? '-' }}</td>
+                    <td>{{ $row->barang?->kode_tampilan ?? '-' }}</td>
                     <td>{{ $row->barang?->nama_barang ?? '-' }}</td>
                     <td class="text-center">{{ $row->barang?->unit ?? '-' }}</td>
                     <td class="text-center">{{ $row->qty ?? 0 }}</td>

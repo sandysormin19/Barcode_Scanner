@@ -14,17 +14,21 @@ class LaporanService
 {
     public function getBarangMasukHariIni(string $tanggal, int $perPage = 25): LengthAwarePaginator
     {
-        $query = BarangMasukDetail::with(['barang:id,kode_barang,nama_barang','barangMasuk:id,tanggal_masuk'])
-            ->select(['id','barang_masuk_id','barang_id','qty','batch','created_at'])
-            ->whereDate('created_at', $tanggal)
-            ->orderByDesc('id');
+        $query = BarangMasukDetail::with([
+    'barang:id,kode_barang,barang_induk,item_barang,nama_barang,unit',
+    'barangMasuk:id,tanggal_masuk,nomor_transaksi,operator',
+])
+    ->select(['id', 'barang_masuk_id', 'barang_id', 'qty', 'batch', 'created_at'])
+    ->whereDate('created_at', $tanggal)
+    ->orderByDesc('id');
+
 
         return Cache::remember("laporan:masuk:{$tanggal}:page:1:per:{$perPage}", 15, fn() => $query->paginate($perPage));
     }
 
     public function getBarangKeluarHariIni(string $tanggal, int $perPage = 25): LengthAwarePaginator
     {
-        $query = BarangKeluarDetail::with(['barang:id,kode_barang,nama_barang','barangKeluar:id,tanggal'])
+        $query = BarangKeluarDetail::with(['barang:id,kode_barang,barang_induk,item_barang,nama_barang,unit','barangKeluar:id,tanggal,nomor_transaksi'])
             ->select(['id','barang_keluar_id','barang_id','qty','batch','created_at'])
             ->whereHas('barangKeluar', fn($q) => $q->whereDate('tanggal', $tanggal))
             ->orderByDesc('id');

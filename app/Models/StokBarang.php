@@ -8,7 +8,7 @@ class StokBarang extends Model
 {
     protected $fillable = [
         'barang_id',
-        'stok'
+        'stok',
     ];
 
     public function barang()
@@ -17,8 +17,7 @@ class StokBarang extends Model
     }
 
     public function stokBarang()
-{
-    return $this->hasOne(StokBarang::class, 'barang_id');
-}
-
+    {
+        return $this->hasOne(StokBarang::class, 'barang_id');
+    }
 }

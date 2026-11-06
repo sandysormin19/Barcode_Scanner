@@ -40,22 +40,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/{barang}/barcode', 'barcode')->name('barcode');
     });
 
-
     Route::resource('barang', BarangController::class)
         ->only(['index', 'show']);
 
-
     Route::resource('kategori', KategoriController::class)
-        ->only(['index', 'store', 'show', 'edit', 'update', 'destroy']);
+        ->only(['index', 'store']);
 
     Route::prefix('barang-masuk')->name('barang-masuk.')->controller(BarangMasukController::class)->group(function () {
         Route::get('/scanner', 'scanner')->name('scanner');
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
         Route::get('/{barang_masuk}', 'show')->name('show');
-        Route::get('/{barang_masuk}/edit', 'edit')->name('edit');
-        Route::put('/{barang_masuk}', 'update')->name('update');
-        Route::delete('/{barang_masuk}', 'destroy')->name('destroy');
     });
 
     Route::prefix('barang-keluar')->name('barang-keluar.')->controller(BarangKeluarController::class)->group(function () {
@@ -67,9 +62,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/{barang_keluar}', 'show')->name('show');
         Route::get('/{barang_keluar}/track', 'track')->name('track');
         Route::post('/{barang_keluar}/update-status', 'updateStatus')->name('update-status');
-        Route::get('/{barang_keluar}/edit', 'edit')->name('edit');
-        Route::put('/{barang_keluar}', 'update')->name('update');
-        Route::delete('/{barang_keluar}', 'destroy')->name('destroy');
     });
 
     Route::get('/stok', [StokBarangController::class, 'index'])->name('stok.index');

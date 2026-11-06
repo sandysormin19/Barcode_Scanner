@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Enums\StatusPengiriman;
 use App\Models\BarangKeluar;
 use App\Models\BarangKeluarLog;
+use App\Services\EshopeSyncService;
 use Illuminate\Support\Facades\Auth;
 
 class BarangKeluarObserver
@@ -43,6 +44,12 @@ class BarangKeluarObserver
             $barangKeluar->status,
             $barangKeluar->keterangan ?? null,
         );
+
+        // Sinkronkan ke Eshope jika status berubah menjadi "delivered"
+        if ($barangKeluar->status === StatusPengiriman::Delivered) {
+            $eshopeSyncService = new EshopeSyncService();
+            $eshopeSyncService->syncDeliveredItems($barangKeluar);
+        }
     }
 
     protected function writeStatusLog(

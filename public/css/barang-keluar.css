@@ -1,0 +1,440 @@
+
+/* =========================================
+   BARANG KELUAR - OPERATOR FRIENDLY
+========================================= */
+
+
+/* CARD */
+
+.transaction-card {
+    border: none;
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 4px 25px rgba(15, 23, 42, 0.07);
+
+    overflow: hidden;
+}
+
+
+/* CARD HEADER */
+
+.transaction-header {
+    background: #ffffff;
+    padding: 24px 28px;
+
+    border-bottom: 1px solid #e5eaf1;
+}
+
+.header-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf2ff;
+    color: #2563eb;
+
+    border-radius: 12px;
+
+    font-size: 21px;
+}
+
+.transaction-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #172b4d;
+}
+
+.transaction-subtitle {
+    font-size: 14px;
+    color: #718096;
+    margin-top: 4px;
+}
+
+.transaction-label {
+    padding: 9px 14px;
+
+    border-radius: 8px;
+
+    background: #eaf2ff;
+    color: #2563eb;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* TABLE */
+
+.transaction-table {
+    width: 100%;
+    min-width: 950px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+
+/* TABLE HEADER */
+
+.transaction-table thead {
+    background: #f5f8fc;
+}
+
+.transaction-table thead th {
+    padding: 18px 24px;
+
+    color: #526581;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+
+    border-top: none;
+    border-bottom: 1px solid #e5eaf1;
+
+    white-space: nowrap;
+}
+
+
+/* TABLE BODY */
+
+.transaction-table tbody td {
+    padding: 23px 24px;
+
+    font-size: 14px;
+
+    color: #334155;
+
+    vertical-align: middle;
+
+    border-top: 1px solid #edf1f6;
+}
+
+.transaction-table tbody tr:first-child td {
+    border-top: none;
+}
+
+.transaction-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.transaction-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+
+/* ROW NUMBER */
+
+.row-number {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    background: #f0f4fa;
+
+    color: #526581;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* TRANSACTION NUMBER */
+
+.transaction-number {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+}
+
+.transaction-symbol {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf2ff;
+    color: #2563eb;
+
+    border-radius: 11px;
+
+    font-size: 18px;
+}
+
+.transaction-code {
+    display: block;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #1d4ed8;
+
+    white-space: nowrap;
+}
+
+.transaction-type {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #718096;
+
+    font-size: 13px;
+}
+
+
+/* DATE */
+
+.date-wrapper {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.date-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eafaf0;
+    color: #16a34a;
+
+    border-radius: 11px;
+
+    font-size: 18px;
+}
+
+.date-value {
+    display: block;
+
+    color: #1e293b;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.date-label {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #718096;
+
+    font-size: 13px;
+}
+
+
+/* ACTION BUTTONS */
+
+.action-buttons {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    white-space: nowrap;
+}
+
+.btn-action {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-width: 100px;
+    height: 42px;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none !important;
+
+    white-space: nowrap;
+
+    transition: all 0.2s ease;
+}
+
+.btn-action span {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.btn-detail {
+    background: #eaf2ff;
+    color: #2563eb;
+}
+
+.btn-detail:hover {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.btn-track {
+    background: #eafaf0;
+    color: #16a34a;
+}
+
+.btn-track:hover {
+    background: #16a34a;
+    color: #ffffff;
+}
+
+
+/* EMPTY STATE */
+
+.empty-state {
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.empty-icon {
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    background: #f0f4fa;
+
+    color: #94a3b8;
+
+    border-radius: 50%;
+
+    font-size: 31px;
+}
+
+.empty-state h5 {
+    color: #475569;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: #718096;
+
+    font-size: 14px;
+
+    margin-bottom: 0;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .transaction-header {
+        padding: 20px;
+    }
+
+    .transaction-title {
+        font-size: 18px;
+    }
+
+    .transaction-subtitle {
+        font-size: 13px;
+    }
+
+    .transaction-label {
+        display: none;
+    }
+
+    .transaction-table thead th,
+    .transaction-table tbody td {
+        padding: 17px 18px;
+    }
+
+    .transaction-table thead th {
+        font-size: 12px;
+    }
+
+    .transaction-table tbody td {
+        font-size: 14px;
+    }
+
+}
+
+
+/* SMALL SCREEN */
+
+@media (max-width: 480px) {
+
+    .transaction-title {
+        font-size: 16px;
+    }
+
+    .transaction-subtitle {
+        font-size: 12px;
+    }
+
+    .transaction-table {
+        min-width: 900px;
+    }
+
+    .transaction-table thead th,
+    .transaction-table tbody td {
+        padding: 15px;
+    }
+
+    .transaction-code {
+        font-size: 14px;
+    }
+
+    .date-value {
+        font-size: 13px;
+    }
+
+    .btn-action {
+        min-width: 95px;
+        height: 40px;
+
+        padding: 0 12px;
+
+        font-size: 13px;
+    }
+
+}

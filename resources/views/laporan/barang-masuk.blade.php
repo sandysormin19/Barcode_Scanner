@@ -74,7 +74,7 @@
                             </td>
 
                             <td>
-                                {{ $row->barang->kode_barang }}
+                                {{ $row->barang?->kode_tampilan ?? '-' }}
                             </td>
 
                             <td>

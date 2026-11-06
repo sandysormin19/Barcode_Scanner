@@ -126,7 +126,7 @@
 
                 <div class="form-control bg-light">
 
-                    {{ $detail->barang->kode_barang ?? '-' }}
+                    {{ $detail->barang?->kode_tampilan ?? '-' }}
 
                 </div>
 

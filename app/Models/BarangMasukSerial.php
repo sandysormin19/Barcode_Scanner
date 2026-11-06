@@ -9,6 +9,7 @@ class BarangMasukSerial extends Model
     protected $fillable = [
         'barang_masuk_detail_id',
         'serial_number',
+        'batch',
         'qty',
     ];
 

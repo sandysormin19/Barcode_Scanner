@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\KategoriStoreRequest;
-use App\Models\Kategori;
 use App\Services\KategoriService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -34,31 +33,4 @@ class KategoriController extends Controller
         return redirect()->route('kategori.index');
     }
 
-    public function show(Kategori $kategori): View
-    {
-        return view('kategori.show', compact('kategori'));
-    }
-
-    public function edit(Kategori $kategori): View
-    {
-        return view('kategori.edit', compact('kategori'));
-    }
-
-    public function update(KategoriStoreRequest $request, Kategori $kategori): RedirectResponse
-    {
-        $this->kategoriService->updateKategori($kategori, $request->validated());
-
-        Alert::success('Berhasil', 'Kategori berhasil diperbarui.');
-
-        return redirect()->route('kategori.index');
-    }
-
-    public function destroy(Kategori $kategori): RedirectResponse
-    {
-        $this->kategoriService->deleteKategori($kategori);
-
-        Alert::success('Berhasil', 'Kategori berhasil dihapus.');
-
-        return redirect()->route('kategori.index');
-    }
 }

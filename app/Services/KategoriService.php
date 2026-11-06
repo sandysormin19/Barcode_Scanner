@@ -23,20 +23,4 @@ class KategoriService
             'is_active' => (bool) ($data['is_active'] ?? false),
         ]);
     }
-
-    public function updateKategori(Kategori $kategori, array $data): Kategori
-    {
-        $kategori->fill([
-            'nama_kategori' => $data['nama_kategori'],
-            'deskripsi' => $data['deskripsi'] ?? null,
-            'is_active' => (bool) ($data['is_active'] ?? false),
-        ]);
-        $kategori->save();
-        return $kategori;
-    }
-
-    public function deleteKategori(Kategori $kategori): void
-    {
-        $kategori->delete();
-    }
 }

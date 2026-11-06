@@ -11,7 +11,9 @@ class BarangMasukDetail extends Model
     'barang_masuk_id',
     'barang_id',
     'qty',
-    'batch'
+    'batch',
+    'serial_number',
+    'harga_satuan',
 ];
 
 

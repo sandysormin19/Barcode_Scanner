@@ -58,7 +58,7 @@
                             {{$row->barangKeluar->nomor_transaksi}}
                         </td>
                         <td>
-                            {{$row->barang->kode_barang}}
+                            {{ $row->barang?->kode_tampilan ?? '-' }}
                         </td>
                         <td>
                             {{$row->barang->nama_barang}}

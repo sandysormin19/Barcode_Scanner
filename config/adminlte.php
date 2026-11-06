@@ -62,8 +62,8 @@ return [
     |
     */
 
-    'logo' => '<b>Produksi</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Roputex</b>',
+    'logo_img' => 'vendor/adminlte/dist/img/R.jpg',
     'route' => 'dashboard',
 
     /*
@@ -106,7 +106,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',

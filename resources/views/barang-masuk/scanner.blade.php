@@ -10,6 +10,16 @@
 
 @section('content')
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Transaksi belum tersimpan:</strong>
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="card card-primary card-outline shadow">
 
     <div class="card-haeader">
@@ -117,7 +127,6 @@
             <thead class="bg-primary text-white">
                 <tr>
                     <th width="5%">No</th>
-                    <th width="15%">Kode</th>
                     <th>Nama Barang</th>
                     <th width="10%">Unit</th>
                     <th width="10%">Qty</th>
@@ -129,7 +138,7 @@
 
             <tbody id="detailBarang">
                 <tr>
-                    <td colspan="8" class="text-center text-muted py-4">
+                    <td colspan="7" class="text-center text-muted py-4">
                         <i class="fas fa-box-open fa-2x mb-2"></i>
                         <br>
                         Belum ada barang yang dipilih.
@@ -166,12 +175,12 @@ window.barangMasukConfig = {
 </script>
 
 <!-- Helpers dulu -->
-<script src="{{ asset('js/helper.js') }}"></script>
 <script src="{{ asset('js/modules/api-helper.js') }}"></script>
 <script src="{{ asset('js/modules/table-helper.js') }}"></script>
-<script src="{{ asset('js/modules/serial-helper.js') }}"></script>
+<script src="{{ asset('js/modules/serial-helper.js') }}?v={{ filemtime(public_path('js/modules/serial-helper.js')) }}"></script>
 <script src="{{ asset('js/modules/scanner-helper.js') }}"></script>
 
 <!-- Main script -->
-<script src="{{ asset('js/barang-masuk-scanner.js') }}"></script>
+<script src="{{ asset('js/barang-masuk-scanner.js') }}?v={{ filemtime(public_path('js/barang-masuk-scanner.js')) }}"></script>
 @stop
+

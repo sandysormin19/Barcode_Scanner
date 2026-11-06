@@ -27,7 +27,7 @@
 
 
             <p>
-                {{ $barang->kode_barang }}
+                {{ $barang->kode_tampilan }}
             </p>
 
         </div>
